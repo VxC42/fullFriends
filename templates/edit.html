@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title>Email Validation with Database</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+</head>
+<body>
+     <div id="flashes">
+          <p>{%with messages = get_flashed_messages()%}
+               {%if messages%}
+               <ul>
+                    {%for message in messages%}
+                         <li>{{message}}</li>
+                    {%endfor%}
+               </ul>
+               {%endif%}
+          {%endwith%}</p>
+     </div>
+
+     <div id="regForm">
+
+          <form action ="/update/{{one_friend['id']}}" method='post'>
+          <p>First Name:<input class="textfield" type="text" name ="first_name" value="{{one_friend['first_name']}}"></p>
+          <p>Last Name:<input class="textfield" type="text" name ="last_name" value="{{one_friend['last_name']}}"></p>
+          <p><span class="indent">Email:</span><input class="textfield" type="text" name ="email" value="{{one_friend['email']}}">
+          <input class="button" type="submit" value="Update"></p>
+          </form>
+     </div>
+
+</body>
+</html>

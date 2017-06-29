@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <title>Email Validation with Database</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+</head>
+<body>
+     <div id="flashes">
+          <table>
+
+
+
+               <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+               </tr>
+               <!-- add tr, td with info. -->
+               {%for friend in all_friends%}
+               <tr>
+                    <td>{{friend['first_name']}} </td>
+                    <td>{{friend['last_name']}} </td>
+                    <td>{{friend['email']}} </td>
+                    <td>
+                         <form action ="/edit/{{friend['id']}}" method='post'>
+                              <input class="button" type="submit" value ="Edit">
+                         </form>
+                         <form action ="/delete/{{friend['id']}}" method='post'>
+                              <input class="button" type="submit" value ="Delete">
+                         </form>
+                    </td>
+
+               {%endfor%}
+          </table>
+
+          <p>{%with messages = get_flashed_messages()%}
+               {%if messages%}
+               <ul>
+                    {%for message in messages%}
+                         <li>{{message}}</li>
+                    {%endfor%}
+               </ul>
+               {%endif%}
+          {%endwith%}</p>
+     </div>
+
+     <div id="regForm">
+
+          <form action ='/submit' method='post'>
+          <p>First Name:<input class="textfield" type="text" name ="first_name"></p>
+          <p>Last Name:<input class="textfield" type="text" name ="last_name"></p>
+          <p><span class="indent">Email:</span><input class="textfield" type="text" name ="email">
+          <input class="button" type="submit" value="Add Friend"></p>
+          </form>
+     </div>
+
+</body>
+</html>
